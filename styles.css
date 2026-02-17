@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1a365d;
+    --primary-light: #2c5282;
+    --secondary: #2d3748;
+    --accent: #3182ce;
+    --success: #38a169;
+    --warning: #d69e2e;
+    --danger: #e53e3e;
+    --background: #f7fafc;
+    --surface: #ffffff;
+    --text: #2d3748;
+    --text-light: #718096;
+    --border: #e2e8f0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--surface);
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Home Screen */
+#homeScreen header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+}
+
+#homeScreen h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.menu {
+    padding: 2rem 1.5rem;
+    flex: 1;
+}
+
+.menu h2 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-light);
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+}
+
+.menu h2:first-child {
+    margin-top: 0;
+}
+
+.menu-btn {
+    width: 100%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.menu-btn:active {
+    transform: scale(0.98);
+}
+
+.menu-btn:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(49, 130, 206, 0.15);
+}
+
+.btn-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+}
+
+.btn-desc {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+/* Competition Screen */
+.competition-header {
+    background: var(--primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.competition-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.icon-btn:active {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.stage-indicator {
+    background: var(--surface);
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+#stageInfo {
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+#shotInfo {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.timer-display {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+}
+
+.main-timer {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.5rem;
+}
+
+.main-timer.warning {
+    color: var(--warning);
+}
+
+.main-timer.danger {
+    color: var(--danger);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.status-message {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    font-weight: 500;
+    min-height: 1.5rem;
+}
+
+.status-message.active {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.status-message.alert {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.progress-container {
+    padding: 0 1.5rem 1.5rem;
+    background: var(--background);
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.controls {
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.control-btn {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.control-btn:active {
+    transform: scale(0.97);
+}
+
+.control-btn.primary {
+    background: var(--accent);
+    color: white;
+}
+
+.control-btn.primary:hover {
+    background: #2c5ba0;
+}
+
+.control-btn.secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 2px solid var(--border);
+}
+
+.control-btn.secondary:hover {
+    border-color: var(--accent);
+}
+
+.shots-grid {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+    background: var(--background);
+}
+
+.shot-indicator {
+    aspect-ratio: 1;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    background: var(--surface);
+    color: var(--text-light);
+}
+
+.shot-indicator.completed {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+}
+
+.shot-indicator.current {
+    border-color: var(--accent);
+    border-width: 3px;
+    color: var(--accent);
+    animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+    0%, 100% { 
+        border-color: var(--accent);
+        box-shadow: 0 0 0 rgba(49, 130, 206, 0);
+    }
+    50% { 
+        border-color: var(--accent);
+        box-shadow: 0 0 12px rgba(49, 130, 206, 0.4);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .main-timer {
+        font-size: 3rem;
+    }
+    
+    .shots-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.5rem;
+    }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+    .timer-display {
+        padding: 2rem 2rem;
+    }
+    
+    .main-timer {
+        font-size: 3rem;
+    }
+}

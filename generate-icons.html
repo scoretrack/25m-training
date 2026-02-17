@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Icons</title>
+</head>
+<body>
+    <h1>Icon Generator for 25m Pistol PWA</h1>
+    <p>Right-click each canvas below and save as the filename shown:</p>
+    
+    <h2>icon-192.png</h2>
+    <canvas id="icon192" width="192" height="192"></canvas>
+    
+    <h2>icon-512.png</h2>
+    <canvas id="icon512" width="512" height="512"></canvas>
+
+    <script>
+        function createIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = '#1a365d';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Target circles
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = size / 40;
+            
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const maxRadius = size * 0.4;
+            
+            for (let i = 3; i > 0; i--) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, maxRadius * (i / 3), 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            // Center dot
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, size / 30, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${size / 8}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText('25m', centerX, size - size / 10);
+        }
+        
+        createIcon('icon192', 192);
+        createIcon('icon512', 512);
+    </script>
+</body>
+</html>

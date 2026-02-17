@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a365d">
+    <meta name="description" content="ISSF 25m Pistol Training Timer">
+    <title>25m Pistol</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div id="app">
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen active">
+            <header>
+                <h1>25m Pistol</h1>
+                <p class="subtitle">ISSF Training Timer</p>
+            </header>
+            
+            <div class="menu">
+                <h2>Qualification</h2>
+                <button class="menu-btn" data-mode="precision">
+                    <span class="btn-title">Precision</span>
+                    <span class="btn-desc">30 shots • 5 min per series</span>
+                </button>
+                <button class="menu-btn" data-mode="rapid">
+                    <span class="btn-title">Rapid Fire</span>
+                    <span class="btn-desc">30 shots • 3 sec per shot</span>
+                </button>
+                
+                <h2>Finals</h2>
+                <button class="menu-btn" data-mode="ranking">
+                    <span class="btn-title">Ranking</span>
+                    <span class="btn-desc">10 shots • 4 sec per shot</span>
+                </button>
+                <button class="menu-btn" data-mode="medal">
+                    <span class="btn-title">Medal Match</span>
+                    <span class="btn-desc">Best of 4 series</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Competition Screen -->
+        <div id="competitionScreen" class="screen">
+            <header class="competition-header">
+                <button id="backBtn" class="icon-btn">←</button>
+                <h2 id="competitionTitle">Precision</h2>
+                <button id="pauseBtn" class="icon-btn">⏸</button>
+            </header>
+
+            <div class="stage-indicator">
+                <div id="stageInfo">Series 1 of 6</div>
+                <div id="shotInfo">Shot 1 of 5</div>
+            </div>
+
+            <div class="timer-display">
+                <div id="mainTimer" class="main-timer">5:00</div>
+                <div id="statusMessage" class="status-message">Ready</div>
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="controls">
+                <button id="startBtn" class="control-btn primary">Start</button>
+                <button id="nextBtn" class="control-btn secondary" style="display:none;">Next Shot</button>
+                <button id="resumeBtn" class="control-btn primary" style="display:none;">Resume</button>
+            </div>
+
+            <div class="shots-grid" id="shotsGrid"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
